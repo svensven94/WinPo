@@ -46,6 +46,12 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="appPanel.cs">
+      <SubType>UserControl</SubType>
+    </Compile>
+    <Compile Include="appPanel.Designer.cs">
+      <DependentUpon>appPanel.cs</DependentUpon>
+    </Compile>
     <Compile Include="Configuration.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -61,6 +67,9 @@
     <Compile Include="PosWindow.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <EmbeddedResource Include="appPanel.resx">
+      <DependentUpon>appPanel.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Configuration.resx">
       <DependentUpon>Configuration.cs</DependentUpon>
     </EmbeddedResource>

@@ -9,3 +9,4 @@ C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.csproj.GenerateResource.c
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.csproj.CoreCompileInputs.cache
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.exe
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.pdb
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.appPanel.resources

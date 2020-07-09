@@ -59,8 +59,8 @@ namespace WinPo
                     //PosWindow.SetWindowPos(hWnd, IntPtr.Zero, 0, 0, 0, 0, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
                     PosWindow.Rect position = new PosWindow.Rect();
                     PosWindow.GetWindowRect(hWnd, ref position);
-                    textPosLeft.Text = position.Top.ToString();
-                    textPosTop.Text = position.Left.ToString();
+                    textPosLeft.Text = position.Left.ToString();
+                    textPosTop.Text = position.Top.ToString();
                     textPosRight.Text = position.Right.ToString();
                     textPosBottom.Text = position.Bottom.ToString();
                 }
@@ -72,23 +72,36 @@ namespace WinPo
 
         private void button1_Click(object sender, EventArgs e)
         {
+
+        }
+
+        private void buttonSet_Click(object sender, EventArgs e)
+        {
             if (comboApp.SelectedIndex > -1)
             {
-                var position = new int[] { Int32.Parse(textPosLeft.Text), Int32.Parse(textPosTop.Text), Int32.Parse(textPosRight.Text), Int32.Parse(textPosBottom.Text) };
+                try
+                {
+                    var position = new int[] { Int32.Parse(textPosLeft.Text), Int32.Parse(textPosTop.Text) }; //Int32.Parse(textPosRight.Text), Int32.Parse(textPosBottom.Text) };
+                    String app = comboApp.SelectedItem.ToString();
+                    if (savedApps.ContainsKey(app))
+                    {
+                        savedApps[app] = position;
+                    }
+                    else
+                    {
+                        savedApps.Add(app, position);
+                    }
 
-                String app = comboApp.SelectedItem.ToString();
-                if (savedApps.ContainsKey(app))
-                {
-                    savedApps[app] = position;
-                } else
-                {
-                    savedApps.Add(app, position);
+                    IntPtr hWnd = PosWindow.FindWindow(null, comboApp.SelectedItem.ToString());
+                    if (hWnd != IntPtr.Zero)
+                    {
+                        PosWindow.SetWindowPos(hWnd, IntPtr.Zero, position[0], position[1], 500, 500, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                    }
                 }
-                
-                IntPtr hWnd = PosWindow.FindWindow(null, comboApp.SelectedItem.ToString());
-                if (hWnd != IntPtr.Zero)
+                catch (Exception)
                 {
-                    PosWindow.SetWindowPos(hWnd, IntPtr.Zero, position[0], position[1], position[2], position[3], PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                    MessageBox.Show("Please enter valid values");
+                    return;
                 }
             }
         }
