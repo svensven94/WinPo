@@ -1,6 +1,6 @@
 ﻿namespace WinPo
 {
-    partial class appPanel
+    partial class AppPanel
     {
         /// <summary> 
         /// Erforderliche Designervariable.
@@ -29,6 +29,8 @@
         private void InitializeComponent()
         {
             this.splitContainer1 = new System.Windows.Forms.SplitContainer();
+            this.groupApp = new System.Windows.Forms.GroupBox();
+            this.comboApp = new System.Windows.Forms.ComboBox();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
             this.tableResAndPos = new System.Windows.Forms.TableLayoutPanel();
             this.groupPosTop = new System.Windows.Forms.GroupBox();
@@ -42,12 +44,12 @@
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
             this.buttonLoad = new System.Windows.Forms.Button();
             this.buttonSet = new System.Windows.Forms.Button();
-            this.groupApp = new System.Windows.Forms.GroupBox();
-            this.comboApp = new System.Windows.Forms.ComboBox();
+            this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
             this.splitContainer1.Panel1.SuspendLayout();
             this.splitContainer1.Panel2.SuspendLayout();
             this.splitContainer1.SuspendLayout();
+            this.groupApp.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableResAndPos.SuspendLayout();
             this.groupPosTop.SuspendLayout();
@@ -58,7 +60,6 @@
             this.splitContainer2.Panel1.SuspendLayout();
             this.splitContainer2.Panel2.SuspendLayout();
             this.splitContainer2.SuspendLayout();
-            this.groupApp.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitContainer1
@@ -77,6 +78,26 @@
             this.splitContainer1.Size = new System.Drawing.Size(600, 100);
             this.splitContainer1.SplitterDistance = 200;
             this.splitContainer1.TabIndex = 0;
+            // 
+            // groupApp
+            // 
+            this.groupApp.Controls.Add(this.comboApp);
+            this.groupApp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.groupApp.Location = new System.Drawing.Point(0, 0);
+            this.groupApp.Name = "groupApp";
+            this.groupApp.Size = new System.Drawing.Size(200, 100);
+            this.groupApp.TabIndex = 3;
+            this.groupApp.TabStop = false;
+            this.groupApp.Text = "Application";
+            // 
+            // comboApp
+            // 
+            this.comboApp.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.comboApp.FormattingEnabled = true;
+            this.comboApp.Location = new System.Drawing.Point(3, 16);
+            this.comboApp.Name = "comboApp";
+            this.comboApp.Size = new System.Drawing.Size(194, 21);
+            this.comboApp.TabIndex = 0;
             // 
             // tableLayoutPanel1
             // 
@@ -216,6 +237,7 @@
             this.buttonLoad.TabIndex = 5;
             this.buttonLoad.Text = "Load";
             this.buttonLoad.UseVisualStyleBackColor = true;
+            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
             // buttonSet
             // 
@@ -226,38 +248,20 @@
             this.buttonSet.TabIndex = 0;
             this.buttonSet.Text = "Set";
             this.buttonSet.UseVisualStyleBackColor = true;
+            this.buttonSet.Click += new System.EventHandler(this.buttonSet_Click);
             // 
-            // groupApp
-            // 
-            this.groupApp.Controls.Add(this.comboApp);
-            this.groupApp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.groupApp.Location = new System.Drawing.Point(0, 0);
-            this.groupApp.Name = "groupApp";
-            this.groupApp.Size = new System.Drawing.Size(200, 100);
-            this.groupApp.TabIndex = 3;
-            this.groupApp.TabStop = false;
-            this.groupApp.Text = "Application";
-            // 
-            // comboApp
-            // 
-            this.comboApp.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.comboApp.FormattingEnabled = true;
-            this.comboApp.Location = new System.Drawing.Point(3, 16);
-            this.comboApp.Name = "comboApp";
-            this.comboApp.Size = new System.Drawing.Size(194, 21);
-            this.comboApp.TabIndex = 0;
-            // 
-            // appPanel
+            // AppPanel
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.Controls.Add(this.splitContainer1);
-            this.Name = "appPanel";
+            this.Name = "AppPanel";
             this.Size = new System.Drawing.Size(600, 100);
             this.splitContainer1.Panel1.ResumeLayout(false);
             this.splitContainer1.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).EndInit();
             this.splitContainer1.ResumeLayout(false);
+            this.groupApp.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableResAndPos.ResumeLayout(false);
             this.groupPosTop.ResumeLayout(false);
@@ -272,7 +276,6 @@
             this.splitContainer2.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer2)).EndInit();
             this.splitContainer2.ResumeLayout(false);
-            this.groupApp.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -295,5 +298,6 @@
         private System.Windows.Forms.Button buttonSet;
         private System.Windows.Forms.GroupBox groupApp;
         private System.Windows.Forms.ComboBox comboApp;
+        private System.ComponentModel.BackgroundWorker backgroundWorker1;
     }
 }
