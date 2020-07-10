@@ -8,6 +8,9 @@ namespace WinPo
 {
     static class Program
     {
+        public static Dictionary<string, PosWindow.Rect> savedApps = new Dictionary<string, PosWindow.Rect>();
+        public static Dictionary<string, IContainerControl> savedContainers = new Dictionary<string, IContainerControl>();
+
         /// <summary>
         /// Der Haupteinstiegspunkt für die Anwendung.
         /// </summary>
@@ -16,7 +19,7 @@ namespace WinPo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Menu());
+            Application.Run(new Configuration());
         }
     }
 }

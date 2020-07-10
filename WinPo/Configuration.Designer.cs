@@ -35,17 +35,18 @@
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
             this.tableButtonsLower = new System.Windows.Forms.TableLayoutPanel();
-            this.appPanel1 = new WinPo.AppPanel();
+            this.buttonSave = new System.Windows.Forms.Button();
+            this.buttonSetAll = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitBackground)).BeginInit();
             this.splitBackground.Panel1.SuspendLayout();
             this.splitBackground.Panel2.SuspendLayout();
             this.splitBackground.SuspendLayout();
-            this.tableUpper.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.splitButtons)).BeginInit();
             this.splitButtons.Panel1.SuspendLayout();
             this.splitButtons.Panel2.SuspendLayout();
             this.splitButtons.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
+            this.tableButtonsLower.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitBackground
@@ -70,7 +71,6 @@
             // 
             this.tableUpper.ColumnCount = 1;
             this.tableUpper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.13807F));
-            this.tableUpper.Controls.Add(this.appPanel1, 0, 0);
             this.tableUpper.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableUpper.Location = new System.Drawing.Point(0, 0);
             this.tableUpper.Name = "tableUpper";
@@ -94,7 +94,7 @@
             // 
             this.splitButtons.Panel2.Controls.Add(this.tableButtonsLower);
             this.splitButtons.Size = new System.Drawing.Size(956, 118);
-            this.splitButtons.SplitterDistance = 69;
+            this.splitButtons.SplitterDistance = 56;
             this.splitButtons.TabIndex = 0;
             // 
             // tableLayoutPanel1
@@ -110,7 +110,7 @@
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
             this.tableLayoutPanel1.RowCount = 1;
             this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(956, 69);
+            this.tableLayoutPanel1.Size = new System.Drawing.Size(956, 56);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
             // buttonAdd
@@ -118,7 +118,7 @@
             this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAdd.Location = new System.Drawing.Point(3, 3);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(233, 63);
+            this.buttonAdd.Size = new System.Drawing.Size(233, 50);
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "+";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -129,7 +129,7 @@
             this.buttonRemove.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonRemove.Location = new System.Drawing.Point(242, 3);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(233, 63);
+            this.buttonRemove.Size = new System.Drawing.Size(233, 50);
             this.buttonRemove.TabIndex = 1;
             this.buttonRemove.Text = "-";
             this.buttonRemove.UseVisualStyleBackColor = true;
@@ -141,21 +141,36 @@
             this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableButtonsLower.Controls.Add(this.buttonSave, 1, 0);
+            this.tableButtonsLower.Controls.Add(this.buttonSetAll, 2, 0);
             this.tableButtonsLower.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableButtonsLower.Location = new System.Drawing.Point(0, 0);
             this.tableButtonsLower.Name = "tableButtonsLower";
             this.tableButtonsLower.RowCount = 1;
             this.tableButtonsLower.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableButtonsLower.Size = new System.Drawing.Size(956, 45);
+            this.tableButtonsLower.Size = new System.Drawing.Size(956, 58);
             this.tableButtonsLower.TabIndex = 0;
             // 
-            // appPanel1
+            // buttonSave
             // 
-            this.appPanel1.Dock = System.Windows.Forms.DockStyle.Top;
-            this.appPanel1.Location = new System.Drawing.Point(3, 3);
-            this.appPanel1.Name = "appPanel1";
-            this.appPanel1.Size = new System.Drawing.Size(950, 100);
-            this.appPanel1.TabIndex = 0;
+            this.buttonSave.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSave.Location = new System.Drawing.Point(321, 3);
+            this.buttonSave.Name = "buttonSave";
+            this.buttonSave.Size = new System.Drawing.Size(312, 52);
+            this.buttonSave.TabIndex = 0;
+            this.buttonSave.Text = "Save";
+            this.buttonSave.UseVisualStyleBackColor = true;
+            this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
+            // 
+            // buttonSetAll
+            // 
+            this.buttonSetAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSetAll.Location = new System.Drawing.Point(639, 3);
+            this.buttonSetAll.Name = "buttonSetAll";
+            this.buttonSetAll.Size = new System.Drawing.Size(314, 52);
+            this.buttonSetAll.TabIndex = 1;
+            this.buttonSetAll.Text = "Set All";
+            this.buttonSetAll.UseVisualStyleBackColor = true;
             // 
             // Configuration
             // 
@@ -170,12 +185,12 @@
             this.splitBackground.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitBackground)).EndInit();
             this.splitBackground.ResumeLayout(false);
-            this.tableUpper.ResumeLayout(false);
             this.splitButtons.Panel1.ResumeLayout(false);
             this.splitButtons.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitButtons)).EndInit();
             this.splitButtons.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableButtonsLower.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -185,11 +200,12 @@
         private System.Windows.Forms.SplitContainer splitBackground;
         private System.Windows.Forms.TableLayoutPanel tableUpper;
         private System.Windows.Forms.SplitContainer splitButtons;
-        private AppPanel appPanel1;
         private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
         private System.Windows.Forms.TableLayoutPanel tableButtonsLower;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
+        private System.Windows.Forms.Button buttonSave;
+        private System.Windows.Forms.Button buttonSetAll;
     }
 }
 
