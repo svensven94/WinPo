@@ -37,6 +37,7 @@
             this.tableButtonsLower = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonSetAll = new System.Windows.Forms.Button();
+            this.buttonLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitBackground)).BeginInit();
             this.splitBackground.Panel1.SuspendLayout();
             this.splitBackground.Panel2.SuspendLayout();
@@ -143,6 +144,7 @@
             this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableButtonsLower.Controls.Add(this.buttonSave, 1, 0);
             this.tableButtonsLower.Controls.Add(this.buttonSetAll, 2, 0);
+            this.tableButtonsLower.Controls.Add(this.buttonLoad, 0, 0);
             this.tableButtonsLower.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableButtonsLower.Location = new System.Drawing.Point(0, 0);
             this.tableButtonsLower.Name = "tableButtonsLower";
@@ -171,6 +173,17 @@
             this.buttonSetAll.TabIndex = 1;
             this.buttonSetAll.Text = "Set All";
             this.buttonSetAll.UseVisualStyleBackColor = true;
+            // 
+            // buttonLoad
+            // 
+            this.buttonLoad.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonLoad.Location = new System.Drawing.Point(3, 3);
+            this.buttonLoad.Name = "buttonLoad";
+            this.buttonLoad.Size = new System.Drawing.Size(312, 52);
+            this.buttonLoad.TabIndex = 2;
+            this.buttonLoad.Text = "Load";
+            this.buttonLoad.UseVisualStyleBackColor = true;
+            this.buttonLoad.Click += new System.EventHandler(this.button1_Click);
             // 
             // Configuration
             // 
@@ -206,6 +219,7 @@
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonSetAll;
+        private System.Windows.Forms.Button buttonLoad;
     }
 }
 

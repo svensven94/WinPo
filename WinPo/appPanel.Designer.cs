@@ -42,7 +42,7 @@
             this.groupPosRight = new System.Windows.Forms.GroupBox();
             this.textPosRight = new System.Windows.Forms.TextBox();
             this.splitContainer2 = new System.Windows.Forms.SplitContainer();
-            this.buttonLoad = new System.Windows.Forms.Button();
+            this.buttonImport = new System.Windows.Forms.Button();
             this.buttonSet = new System.Windows.Forms.Button();
             this.backgroundWorker1 = new System.ComponentModel.BackgroundWorker();
             ((System.ComponentModel.ISupportInitialize)(this.splitContainer1)).BeginInit();
@@ -219,7 +219,7 @@
             // 
             // splitContainer2.Panel1
             // 
-            this.splitContainer2.Panel1.Controls.Add(this.buttonLoad);
+            this.splitContainer2.Panel1.Controls.Add(this.buttonImport);
             // 
             // splitContainer2.Panel2
             // 
@@ -228,16 +228,16 @@
             this.splitContainer2.SplitterDistance = 74;
             this.splitContainer2.TabIndex = 2;
             // 
-            // buttonLoad
+            // buttonImport
             // 
-            this.buttonLoad.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonLoad.Location = new System.Drawing.Point(0, 0);
-            this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(74, 94);
-            this.buttonLoad.TabIndex = 5;
-            this.buttonLoad.Text = "Load";
-            this.buttonLoad.UseVisualStyleBackColor = true;
-            this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
+            this.buttonImport.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonImport.Location = new System.Drawing.Point(0, 0);
+            this.buttonImport.Name = "buttonImport";
+            this.buttonImport.Size = new System.Drawing.Size(74, 94);
+            this.buttonImport.TabIndex = 5;
+            this.buttonImport.Text = "Import";
+            this.buttonImport.UseVisualStyleBackColor = true;
+            this.buttonImport.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
             // buttonSet
             // 
@@ -294,7 +294,7 @@
         private System.Windows.Forms.GroupBox groupPosRight;
         private System.Windows.Forms.TextBox textPosRight;
         private System.Windows.Forms.SplitContainer splitContainer2;
-        private System.Windows.Forms.Button buttonLoad;
+        private System.Windows.Forms.Button buttonImport;
         private System.Windows.Forms.Button buttonSet;
         private System.Windows.Forms.GroupBox groupApp;
         private System.Windows.Forms.ComboBox comboApp;

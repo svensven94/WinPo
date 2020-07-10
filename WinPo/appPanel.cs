@@ -19,6 +19,16 @@ namespace WinPo
             getApps();
         }
 
+        public AppPanel(string appName, PosWindow.Rect position)
+        {
+            InitializeComponent();
+            getApps();
+
+            comboApp.SelectedItem = appName;
+            textPosLeft.Text = position.Left.ToString();
+            textPosTop.Text = position.Top.ToString();
+        }
+
         private void AppPanel_Load(object sender, EventArgs e)
         {
             getApps();

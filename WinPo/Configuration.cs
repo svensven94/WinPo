@@ -129,5 +129,32 @@ namespace WinPo
                 }
             }
         }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Program.savedApps = new Dictionary<string, PosWindow.Rect>();
+            foreach (String savedData in Properties.Settings.Default.apps)
+            {
+                string appName = savedData.Split(';')[0];
+                PosWindow.Rect position = new PosWindow.Rect()
+                {
+                    Left = Int32.Parse(savedData.Split(';')[1]),
+                    Top = Int32.Parse(savedData.Split(';')[2])
+                };
+                Program.savedApps.Add(appName, position);
+            }
+
+            foreach (Control control in tableUpper.Controls.OfType<AppPanel>())
+            {
+                tableUpper.Controls.Remove(control);
+            }
+
+            foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
+            {
+                AppPanel newPanel = new AppPanel(app.Key, app.Value);
+                newPanel.Dock = DockStyle.Fill;
+                tableUpper.Controls.Add(newPanel);
+            }
+        }
     }
 }
