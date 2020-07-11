@@ -32,11 +32,12 @@
             this.tableUpper = new System.Windows.Forms.TableLayoutPanel();
             this.splitButtons = new System.Windows.Forms.SplitContainer();
             this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.buttonSetAll = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
+            this.buttonImportAll = new System.Windows.Forms.Button();
             this.tableButtonsLower = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSave = new System.Windows.Forms.Button();
-            this.buttonSetAll = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
             ((System.ComponentModel.ISupportInitialize)(this.splitBackground)).BeginInit();
             this.splitBackground.Panel1.SuspendLayout();
@@ -100,12 +101,15 @@
             // 
             // tableLayoutPanel1
             // 
-            this.tableLayoutPanel1.ColumnCount = 3;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 25F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 50F));
+            this.tableLayoutPanel1.ColumnCount = 4;
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableLayoutPanel1.Controls.Add(this.buttonSetAll, 3, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonAdd, 0, 0);
             this.tableLayoutPanel1.Controls.Add(this.buttonRemove, 1, 0);
+            this.tableLayoutPanel1.Controls.Add(this.buttonImportAll, 2, 0);
             this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
             this.tableLayoutPanel1.Name = "tableLayoutPanel1";
@@ -114,12 +118,23 @@
             this.tableLayoutPanel1.Size = new System.Drawing.Size(956, 56);
             this.tableLayoutPanel1.TabIndex = 0;
             // 
+            // buttonSetAll
+            // 
+            this.buttonSetAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSetAll.Location = new System.Drawing.Point(675, 3);
+            this.buttonSetAll.Name = "buttonSetAll";
+            this.buttonSetAll.Size = new System.Drawing.Size(278, 50);
+            this.buttonSetAll.TabIndex = 3;
+            this.buttonSetAll.Text = "Set All";
+            this.buttonSetAll.UseVisualStyleBackColor = true;
+            this.buttonSetAll.Click += new System.EventHandler(this.buttonSetAll_Click);
+            // 
             // buttonAdd
             // 
             this.buttonAdd.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonAdd.Location = new System.Drawing.Point(3, 3);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(233, 50);
+            this.buttonAdd.Size = new System.Drawing.Size(162, 50);
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "+";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -128,22 +143,31 @@
             // buttonRemove
             // 
             this.buttonRemove.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonRemove.Location = new System.Drawing.Point(242, 3);
+            this.buttonRemove.Location = new System.Drawing.Point(171, 3);
             this.buttonRemove.Name = "buttonRemove";
-            this.buttonRemove.Size = new System.Drawing.Size(233, 50);
+            this.buttonRemove.Size = new System.Drawing.Size(162, 50);
             this.buttonRemove.TabIndex = 1;
             this.buttonRemove.Text = "-";
             this.buttonRemove.UseVisualStyleBackColor = true;
             this.buttonRemove.Click += new System.EventHandler(this.buttonRemove_Click);
             // 
+            // buttonImportAll
+            // 
+            this.buttonImportAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonImportAll.Location = new System.Drawing.Point(339, 3);
+            this.buttonImportAll.Name = "buttonImportAll";
+            this.buttonImportAll.Size = new System.Drawing.Size(330, 50);
+            this.buttonImportAll.TabIndex = 2;
+            this.buttonImportAll.Text = "Import All";
+            this.buttonImportAll.UseVisualStyleBackColor = true;
+            this.buttonImportAll.Click += new System.EventHandler(this.buttonImportAll_Click);
+            // 
             // tableButtonsLower
             // 
-            this.tableButtonsLower.ColumnCount = 3;
-            this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
+            this.tableButtonsLower.ColumnCount = 2;
             this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableButtonsLower.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 33.33333F));
             this.tableButtonsLower.Controls.Add(this.buttonSave, 1, 0);
-            this.tableButtonsLower.Controls.Add(this.buttonSetAll, 2, 0);
             this.tableButtonsLower.Controls.Add(this.buttonLoad, 0, 0);
             this.tableButtonsLower.Dock = System.Windows.Forms.DockStyle.Fill;
             this.tableButtonsLower.Location = new System.Drawing.Point(0, 0);
@@ -156,31 +180,20 @@
             // buttonSave
             // 
             this.buttonSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSave.Location = new System.Drawing.Point(321, 3);
+            this.buttonSave.Location = new System.Drawing.Point(481, 3);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(312, 52);
+            this.buttonSave.Size = new System.Drawing.Size(472, 52);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
             this.buttonSave.Click += new System.EventHandler(this.buttonSave_Click);
-            // 
-            // buttonSetAll
-            // 
-            this.buttonSetAll.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSetAll.Location = new System.Drawing.Point(639, 3);
-            this.buttonSetAll.Name = "buttonSetAll";
-            this.buttonSetAll.Size = new System.Drawing.Size(314, 52);
-            this.buttonSetAll.TabIndex = 1;
-            this.buttonSetAll.Text = "Set All";
-            this.buttonSetAll.UseVisualStyleBackColor = true;
-            this.buttonSetAll.Click += new System.EventHandler(this.buttonSetAll_Click);
             // 
             // buttonLoad
             // 
             this.buttonLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonLoad.Location = new System.Drawing.Point(3, 3);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(312, 52);
+            this.buttonLoad.Size = new System.Drawing.Size(472, 52);
             this.buttonLoad.TabIndex = 2;
             this.buttonLoad.Text = "Load";
             this.buttonLoad.UseVisualStyleBackColor = true;
@@ -219,8 +232,9 @@
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;
         private System.Windows.Forms.Button buttonSave;
-        private System.Windows.Forms.Button buttonSetAll;
         private System.Windows.Forms.Button buttonLoad;
+        private System.Windows.Forms.Button buttonSetAll;
+        private System.Windows.Forms.Button buttonImportAll;
     }
 }
 

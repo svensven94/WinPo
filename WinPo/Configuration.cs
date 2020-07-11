@@ -8,6 +8,7 @@ using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -20,6 +21,7 @@ namespace WinPo
         private int appCount = 0;
         private List<int> tmpValues = new List<int>();
         private string tmpName;
+        private PosWindow.Rect tmpPosition = new PosWindow.Rect();
 
         public Configuration()
         {
@@ -75,7 +77,7 @@ namespace WinPo
             //List<string> appList = new List<string>();
             foreach (Control control in tableUpper.Controls.OfType<AppPanel>())
             {
-                iterControls(control);
+                GetControl(control, getValues);
                 if (!String.IsNullOrEmpty(tmpName))
                 {
                     PosWindow.Rect position = new PosWindow.Rect()
@@ -91,50 +93,9 @@ namespace WinPo
                 tmpValues = new List<int>();
             }
 
-            //string jsonString = JsonConvert.SerializeObject(Program.savedApps);
-            //appList.Add(jsonString);
-
-            //Properties.Settings.Default.apps.Add(jsonString);
-            //Properties.Settings.Default.apps = appList;
-            Properties.Settings.Default.Save(); // Saves settings in application configuration file
+            Properties.Settings.Default.Save(); 
         }
 
-        private void iterControls(Control parent)
-        {
-            foreach (Control control in parent.Controls)
-            {
-                //if(control.GetType() == typeof(SplitContainer))
-                if (control.GetType() == typeof(ComboBox))
-                {
-                    ComboBox box = (ComboBox) control;
-                    if (box.SelectedIndex > -1)
-                    {
-                        String app = box.SelectedItem.ToString();
-                        if (!Program.savedApps.ContainsKey(app))
-                        {
-                            Program.savedApps.Add(app, new PosWindow.Rect());
-                            tmpName = app;
-                        }
-                    }
-                }
-                else if (control.GetType() == typeof(TextBox))
-                {
-                    TextBox box = (TextBox) control;
-                    if (!String.IsNullOrEmpty(box.Text))
-                    {
-                        tmpValues.Add(Int32.Parse(box.Text.Trim()));
-                    }
-                }
-                else if (control.GetType() == typeof(Button))
-                {
-                    return;
-                }
-                else
-                {
-                    iterControls(control);
-                }
-            }
-        }
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
@@ -214,11 +175,86 @@ namespace WinPo
             }
         }
 
-        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        private void buttonImportAll_Click(object sender, EventArgs e)
         {
-            Show();
-            this.WindowState = FormWindowState.Normal;
-            //notifyIcon.Visible = false;
+            foreach (Control panel in tableUpper.Controls.OfType<AppPanel>())
+            {
+
+                GetControl(panel, putValues);
+                tmpName = null;
+                tmpPosition = new PosWindow.Rect();
+            }
+        }
+
+        private void putValues(Control control)
+        {
+            if (control.GetType() == typeof(ComboBox))
+            {
+                ComboBox box = (ComboBox)control;
+                if (box.SelectedIndex > -1)
+                {
+                    tmpName = box.SelectedItem.ToString();
+                    IntPtr hWnd = PosWindow.FindWindow(null, tmpName);
+                    if (hWnd != IntPtr.Zero)
+                    {
+                        //PosWindow.SetWindowPos(hWnd, IntPtr.Zero, 0, 0, 0, 0, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                        PosWindow.GetWindowRect(hWnd, ref tmpPosition);
+                    }
+                }
+            }
+            else if (control.GetType() == typeof(TextBox))
+            {
+                TextBox box = (TextBox)control;
+                switch (box.Name)
+                {
+                    case "textPosTop":
+                        box.Text = tmpPosition.Top.ToString();
+                        break;
+                    case "textPosLeft":
+                        box.Text = tmpPosition.Left.ToString();
+                        break;
+                }
+            }
+        }
+
+        private void getValues(Control control)
+        {
+            if (control.GetType() == typeof(ComboBox))
+            {
+                ComboBox box = (ComboBox)control;
+                if (box.SelectedIndex > -1)
+                {
+                    String app = box.SelectedItem.ToString();
+                    if (!Program.savedApps.ContainsKey(app))
+                    {
+                        Program.savedApps.Add(app, new PosWindow.Rect());
+                        tmpName = app;
+                    }
+                }
+            }
+            else if (control.GetType() == typeof(TextBox))
+            {
+                TextBox box = (TextBox)control;
+                if (!String.IsNullOrEmpty(box.Text))
+                {
+                    tmpValues.Add(Int32.Parse(box.Text.Trim()));
+                }
+            }
+        }
+
+        private void GetControl(Control parent, Action<Control> method)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control.GetType() == typeof(ComboBox) || control.GetType() == typeof(TextBox))
+                {
+                    method(control);
+                }
+                else
+                {
+                    GetControl(control, method);
+                }
+            }
         }
     }
 }
