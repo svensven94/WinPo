@@ -13,12 +13,20 @@ namespace WinPo
 {
     public partial class AppPanel : UserControl
     {
-        private Dictionary<string, int[]> savedApps = new Dictionary<string, int[]>();
-
         public AppPanel()
         {
             InitializeComponent();
             getApps();
+        }
+
+        public AppPanel(string appName, PosWindow.Rect position)
+        {
+            InitializeComponent();
+            getApps();
+
+            comboApp.SelectedItem = appName;
+            textPosLeft.Text = position.Left.ToString();
+            textPosTop.Text = position.Top.ToString();
         }
 
         private void AppPanel_Load(object sender, EventArgs e)
@@ -81,21 +89,26 @@ namespace WinPo
             {
                 try
                 {
-                    var position = new int[] { Int32.Parse(textPosLeft.Text), Int32.Parse(textPosTop.Text) }; //Int32.Parse(textPosRight.Text), Int32.Parse(textPosBottom.Text) };
-                    String app = comboApp.SelectedItem.ToString();
-                    if (savedApps.ContainsKey(app))
+                    PosWindow.Rect position = new PosWindow.Rect
                     {
-                        savedApps[app] = position;
+                        Left = Int32.Parse(textPosLeft.Text),
+                        Top = Int32.Parse(textPosTop.Text) //Int32.Parse(textPosRight.Text), Int32.Parse(textPosBottom.Text) };
+                    };
+
+                    String app = comboApp.SelectedItem.ToString();
+                    if (Program.savedApps.ContainsKey(app))
+                    {
+                        Program.savedApps[app] = position;
                     }
                     else
                     {
-                        savedApps.Add(app, position);
+                        Program.savedApps.Add(app, position);
                     }
 
                     IntPtr hWnd = PosWindow.FindWindow(null, comboApp.SelectedItem.ToString());
                     if (hWnd != IntPtr.Zero)
                     {
-                        PosWindow.SetWindowPos(hWnd, IntPtr.Zero, position[0], position[1], 500, 500, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                        PosWindow.SetWindowPos(hWnd, IntPtr.Zero, position.Left, position.Top, 500, 500, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
                     }
                 }
                 catch (Exception)
