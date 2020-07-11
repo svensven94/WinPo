@@ -128,7 +128,8 @@ namespace WinPo
             foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
             {
                 AppPanel newPanel = new AppPanel(app.Key, app.Value);
-                newPanel.Dock = DockStyle.Fill;
+                newPanel.Dock = DockStyle.Top;
+                //newPanel.Anchor = AnchorStyles.Top;
                 appCount += 1;
                 newPanel.Name = appCount.ToString();
                 tableUpper.Controls.Add(newPanel);

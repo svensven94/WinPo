@@ -31,7 +31,7 @@
             this.splitBackground = new System.Windows.Forms.SplitContainer();
             this.tableUpper = new System.Windows.Forms.TableLayoutPanel();
             this.splitButtons = new System.Windows.Forms.SplitContainer();
-            this.tableLayoutPanel1 = new System.Windows.Forms.TableLayoutPanel();
+            this.tableBottom = new System.Windows.Forms.TableLayoutPanel();
             this.buttonSetAll = new System.Windows.Forms.Button();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonRemove = new System.Windows.Forms.Button();
@@ -47,7 +47,7 @@
             this.splitButtons.Panel1.SuspendLayout();
             this.splitButtons.Panel2.SuspendLayout();
             this.splitButtons.SuspendLayout();
-            this.tableLayoutPanel1.SuspendLayout();
+            this.tableBottom.SuspendLayout();
             this.tableButtonsLower.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -65,12 +65,13 @@
             // splitBackground.Panel2
             // 
             this.splitBackground.Panel2.Controls.Add(this.splitButtons);
-            this.splitBackground.Size = new System.Drawing.Size(956, 428);
-            this.splitBackground.SplitterDistance = 306;
+            this.splitBackground.Size = new System.Drawing.Size(609, 421);
+            this.splitBackground.SplitterDistance = 320;
             this.splitBackground.TabIndex = 0;
             // 
             // tableUpper
             // 
+            this.tableUpper.AutoScroll = true;
             this.tableUpper.ColumnCount = 1;
             this.tableUpper.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 28.13807F));
             this.tableUpper.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -78,7 +79,7 @@
             this.tableUpper.Name = "tableUpper";
             this.tableUpper.RowCount = 1;
             this.tableUpper.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 24.25629F));
-            this.tableUpper.Size = new System.Drawing.Size(956, 306);
+            this.tableUpper.Size = new System.Drawing.Size(609, 320);
             this.tableUpper.TabIndex = 1;
             // 
             // splitButtons
@@ -90,37 +91,38 @@
             // 
             // splitButtons.Panel1
             // 
-            this.splitButtons.Panel1.Controls.Add(this.tableLayoutPanel1);
+            this.splitButtons.Panel1.Controls.Add(this.tableBottom);
             // 
             // splitButtons.Panel2
             // 
             this.splitButtons.Panel2.Controls.Add(this.tableButtonsLower);
-            this.splitButtons.Size = new System.Drawing.Size(956, 118);
-            this.splitButtons.SplitterDistance = 56;
+            this.splitButtons.Size = new System.Drawing.Size(609, 97);
+            this.splitButtons.SplitterDistance = 46;
             this.splitButtons.TabIndex = 0;
             // 
-            // tableLayoutPanel1
+            // tableBottom
             // 
-            this.tableLayoutPanel1.ColumnCount = 4;
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
-            this.tableLayoutPanel1.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
-            this.tableLayoutPanel1.Controls.Add(this.buttonSetAll, 3, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonAdd, 0, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonRemove, 1, 0);
-            this.tableLayoutPanel1.Controls.Add(this.buttonImportAll, 2, 0);
-            this.tableLayoutPanel1.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tableLayoutPanel1.Location = new System.Drawing.Point(0, 0);
-            this.tableLayoutPanel1.Name = "tableLayoutPanel1";
-            this.tableLayoutPanel1.RowCount = 1;
-            this.tableLayoutPanel1.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableLayoutPanel1.Size = new System.Drawing.Size(956, 56);
-            this.tableLayoutPanel1.TabIndex = 0;
+            this.tableBottom.ColumnCount = 4;
+            this.tableBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 12.5F));
+            this.tableBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableBottom.ColumnStyles.Add(new System.Windows.Forms.ColumnStyle(System.Windows.Forms.SizeType.Percent, 37.5F));
+            this.tableBottom.Controls.Add(this.buttonSetAll, 3, 0);
+            this.tableBottom.Controls.Add(this.buttonAdd, 0, 0);
+            this.tableBottom.Controls.Add(this.buttonRemove, 1, 0);
+            this.tableBottom.Controls.Add(this.buttonImportAll, 2, 0);
+            this.tableBottom.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tableBottom.Location = new System.Drawing.Point(0, 0);
+            this.tableBottom.Name = "tableBottom";
+            this.tableBottom.RowCount = 1;
+            this.tableBottom.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
+            this.tableBottom.Size = new System.Drawing.Size(609, 46);
+            this.tableBottom.TabIndex = 0;
             // 
             // buttonSetAll
             // 
             this.buttonSetAll.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.buttonSetAll.FlatStyle = System.Windows.Forms.FlatStyle.System;
             this.buttonSetAll.Location = new System.Drawing.Point(675, 3);
             this.buttonSetAll.Name = "buttonSetAll";
             this.buttonSetAll.Size = new System.Drawing.Size(278, 50);
@@ -174,15 +176,15 @@
             this.tableButtonsLower.Name = "tableButtonsLower";
             this.tableButtonsLower.RowCount = 1;
             this.tableButtonsLower.RowStyles.Add(new System.Windows.Forms.RowStyle(System.Windows.Forms.SizeType.Percent, 100F));
-            this.tableButtonsLower.Size = new System.Drawing.Size(956, 58);
+            this.tableButtonsLower.Size = new System.Drawing.Size(609, 47);
             this.tableButtonsLower.TabIndex = 0;
             // 
             // buttonSave
             // 
             this.buttonSave.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSave.Location = new System.Drawing.Point(481, 3);
+            this.buttonSave.Location = new System.Drawing.Point(307, 3);
             this.buttonSave.Name = "buttonSave";
-            this.buttonSave.Size = new System.Drawing.Size(472, 52);
+            this.buttonSave.Size = new System.Drawing.Size(299, 41);
             this.buttonSave.TabIndex = 0;
             this.buttonSave.Text = "Save";
             this.buttonSave.UseVisualStyleBackColor = true;
@@ -193,9 +195,9 @@
             this.buttonLoad.Dock = System.Windows.Forms.DockStyle.Fill;
             this.buttonLoad.Location = new System.Drawing.Point(3, 3);
             this.buttonLoad.Name = "buttonLoad";
-            this.buttonLoad.Size = new System.Drawing.Size(472, 52);
+            this.buttonLoad.Size = new System.Drawing.Size(298, 41);
             this.buttonLoad.TabIndex = 2;
-            this.buttonLoad.Text = "Load";
+            this.buttonLoad.Text = "Load Configuration";
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
@@ -203,8 +205,9 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(956, 428);
+            this.ClientSize = new System.Drawing.Size(609, 421);
             this.Controls.Add(this.splitBackground);
+            this.MinimumSize = new System.Drawing.Size(625, 300);
             this.Name = "Configuration";
             this.Text = "WinPo";
             this.Load += new System.EventHandler(this.Configuration_Load);
@@ -216,7 +219,7 @@
             this.splitButtons.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitButtons)).EndInit();
             this.splitButtons.ResumeLayout(false);
-            this.tableLayoutPanel1.ResumeLayout(false);
+            this.tableBottom.ResumeLayout(false);
             this.tableButtonsLower.ResumeLayout(false);
             this.ResumeLayout(false);
 
@@ -227,7 +230,7 @@
         private System.Windows.Forms.SplitContainer splitBackground;
         private System.Windows.Forms.TableLayoutPanel tableUpper;
         private System.Windows.Forms.SplitContainer splitButtons;
-        private System.Windows.Forms.TableLayoutPanel tableLayoutPanel1;
+        private System.Windows.Forms.TableLayoutPanel tableBottom;
         private System.Windows.Forms.TableLayoutPanel tableButtonsLower;
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonRemove;

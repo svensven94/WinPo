@@ -92,9 +92,8 @@
             // 
             // comboApp
             // 
-            this.comboApp.Dock = System.Windows.Forms.DockStyle.Fill;
             this.comboApp.FormattingEnabled = true;
-            this.comboApp.Location = new System.Drawing.Point(3, 16);
+            this.comboApp.Location = new System.Drawing.Point(3, 40);
             this.comboApp.Name = "comboApp";
             this.comboApp.Size = new System.Drawing.Size(194, 21);
             this.comboApp.TabIndex = 0;
@@ -180,7 +179,7 @@
             this.groupPosBottom.Size = new System.Drawing.Size(111, 41);
             this.groupPosBottom.TabIndex = 2;
             this.groupPosBottom.TabStop = false;
-            this.groupPosBottom.Text = "Position: Bottom";
+            this.groupPosBottom.Text = "Height";
             // 
             // textPosBottom
             // 
@@ -200,7 +199,7 @@
             this.groupPosRight.Size = new System.Drawing.Size(111, 41);
             this.groupPosRight.TabIndex = 3;
             this.groupPosRight.TabStop = false;
-            this.groupPosRight.Text = "Position: Right";
+            this.groupPosRight.Text = "Width";
             // 
             // textPosRight
             // 
@@ -230,10 +229,9 @@
             // 
             // buttonImport
             // 
-            this.buttonImport.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonImport.Location = new System.Drawing.Point(0, 0);
+            this.buttonImport.Location = new System.Drawing.Point(0, 27);
             this.buttonImport.Name = "buttonImport";
-            this.buttonImport.Size = new System.Drawing.Size(74, 94);
+            this.buttonImport.Size = new System.Drawing.Size(72, 46);
             this.buttonImport.TabIndex = 5;
             this.buttonImport.Text = "Import";
             this.buttonImport.UseVisualStyleBackColor = true;
@@ -241,10 +239,9 @@
             // 
             // buttonSet
             // 
-            this.buttonSet.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.buttonSet.Location = new System.Drawing.Point(0, 0);
+            this.buttonSet.Location = new System.Drawing.Point(0, 27);
             this.buttonSet.Name = "buttonSet";
-            this.buttonSet.Size = new System.Drawing.Size(72, 94);
+            this.buttonSet.Size = new System.Drawing.Size(72, 46);
             this.buttonSet.TabIndex = 0;
             this.buttonSet.Text = "Set";
             this.buttonSet.UseVisualStyleBackColor = true;

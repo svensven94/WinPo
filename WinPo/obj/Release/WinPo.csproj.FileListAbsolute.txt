@@ -1,0 +1,15 @@
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\WinPo.exe.config
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\WinPo.exe
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\WinPo.pdb
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\Newtonsoft.Json.dll
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\Newtonsoft.Json.xml
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.csprojAssemblyReference.cache
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.AppPanel.resources
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.Configuration.resources
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.Menu.resources
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.Properties.Resources.resources
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.csproj.GenerateResource.cache
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.csproj.CoreCompileInputs.cache
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.csproj.CopyComplete
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.exe
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.pdb
