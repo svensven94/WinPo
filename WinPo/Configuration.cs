@@ -31,11 +31,7 @@ namespace WinPo
             }
             catch
             {
-            appCount += 1;
-            AppPanel newPanel = new AppPanel();
-            newPanel.Name = appCount.ToString();
-            newPanel.Dock = DockStyle.Fill;
-            tableUpper.Controls.Add(newPanel);
+                addPanel();
             }
         }
 
@@ -45,10 +41,17 @@ namespace WinPo
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            addPanel();
+        }
+
+        private void addPanel()
+        {
             appCount += 1;
             AppPanel newPanel = new AppPanel();
             newPanel.Name = appCount.ToString();
-            newPanel.Dock = DockStyle.Fill;
+            //newPanel.Dock = DockStyle.Fill;
+            newPanel.Anchor = AnchorStyles.Top;
+            newPanel.Name = appCount.ToString();
             tableUpper.Controls.Add(newPanel);
         }
 
@@ -126,10 +129,10 @@ namespace WinPo
 
             foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
             {
-                AppPanel newPanel = new AppPanel(app.Key, app.Value);
-                newPanel.Dock = DockStyle.Top;
-                //newPanel.Anchor = AnchorStyles.Top;
                 appCount += 1;
+                AppPanel newPanel = new AppPanel(app.Key, app.Value);
+                //newPanel.Dock = DockStyle.Top;
+                newPanel.Anchor = AnchorStyles.Top;
                 newPanel.Name = appCount.ToString();
                 tableUpper.Controls.Add(newPanel);
             }
@@ -197,7 +200,6 @@ namespace WinPo
                     IntPtr hWnd = PosWindow.FindWindow(null, tmpName);
                     if (hWnd != IntPtr.Zero)
                     {
-                        //PosWindow.SetWindowPos(hWnd, IntPtr.Zero, 0, 0, 0, 0, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
                         PosWindow.GetWindowRect(hWnd, ref tmpPosition);
                     }
                 }
