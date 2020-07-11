@@ -13,3 +13,7 @@ C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.csproj.CoreCompileInput
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.csproj.CopyComplete
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.exe
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.pdb
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\WinPo.exe.manifest
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Release\WinPo.application
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.exe.manifest
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Release\WinPo.application
