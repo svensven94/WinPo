@@ -25,7 +25,6 @@ namespace WinPo.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("default\r\ndefault2")]
         public global::System.Collections.Generic.List<System.String> apps {
             get {
                 return ((global::System.Collections.Generic.List<System.String>)(this["apps"]));
@@ -37,13 +36,13 @@ namespace WinPo.Properties {
         
         [global::System.Configuration.UserScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
-        [global::System.Configuration.DefaultSettingValueAttribute("")]
-        public string savedString {
+        [global::System.Configuration.DefaultSettingValueAttribute("default")]
+        public string Setting {
             get {
-                return ((string)(this["savedString"]));
+                return ((string)(this["Setting"]));
             }
             set {
-                this["savedString"] = value;
+                this["Setting"] = value;
             }
         }
     }

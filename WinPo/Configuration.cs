@@ -63,9 +63,9 @@ namespace WinPo
             Properties.Settings.Default.apps = new List<string>();
 
             Program.savedApps = new Dictionary<string, PosWindow.Rect>();
-            Program.savedContainers = new Dictionary<string, IContainerControl>();
+            //Program.savedContainers = new Dictionary<string, IContainerControl>();
 
-            List<string> appList = new List<string>();
+            //List<string> appList = new List<string>();
             foreach (Control control in tableUpper.Controls.OfType<AppPanel>())
             {
                 iterControls(control);
@@ -73,8 +73,8 @@ namespace WinPo
                 {
                     PosWindow.Rect position = new PosWindow.Rect()
                     {
-                        Left = tmpValues[0],
-                        Top = tmpValues[1]
+                        Left = tmpValues[1],
+                        Top = tmpValues[0]
                     };
                     Program.savedApps[tmpName] = position;
                     Properties.Settings.Default.apps.Add(tmpName + ";" + position.Left + ";" + position.Top);
@@ -103,7 +103,6 @@ namespace WinPo
                     if (box.SelectedIndex > -1)
                     {
                         String app = box.SelectedItem.ToString();
-                        Program.savedContainers.Add(app, control.GetContainerControl());
                         if (!Program.savedApps.ContainsKey(app))
                         {
                             Program.savedApps.Add(app, new PosWindow.Rect());
@@ -130,9 +129,17 @@ namespace WinPo
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonLoad_Click(object sender, EventArgs e)
         {
+            if(Properties.Settings.Default == null)
+            {
+                MessageBox.Show("No saved configuration");
+                return;
+            }
             Program.savedApps = new Dictionary<string, PosWindow.Rect>();
+            tableUpper.Controls.Clear();
+            appCount = 0;
+
             foreach (String savedData in Properties.Settings.Default.apps)
             {
                 string appName = savedData.Split(';')[0];
@@ -144,17 +151,44 @@ namespace WinPo
                 Program.savedApps.Add(appName, position);
             }
 
-            foreach (Control control in tableUpper.Controls.OfType<AppPanel>())
-            {
-                tableUpper.Controls.Remove(control);
-            }
-
             foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
             {
                 AppPanel newPanel = new AppPanel(app.Key, app.Value);
                 newPanel.Dock = DockStyle.Fill;
+                appCount += 1;
+                newPanel.Name = appCount.ToString();
                 tableUpper.Controls.Add(newPanel);
             }
+        }
+
+        private void buttonSetAll_Click(object sender, EventArgs e)
+        {
+            foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
+            {
+
+                IntPtr hWnd = PosWindow.FindWindow(null, app.Key);
+                if (hWnd != IntPtr.Zero)
+                {
+                    PosWindow.SetWindowPos(hWnd, IntPtr.Zero, app.Value.Left, app.Value.Top, 0, 0, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                }
+            }         
+        }
+
+        private void Configuration_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                Hide();
+                notifyIcon.Visible = true;
+                //notifyIcon.ShowBalloonTip(1000);
+            }
+        }
+
+        private void notifyIcon_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            Show();
+            this.WindowState = FormWindowState.Normal;
+            notifyIcon.Visible = false;
         }
     }
 }

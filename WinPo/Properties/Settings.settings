@@ -3,11 +3,10 @@
   <Profiles />
   <Settings>
     <Setting Name="apps" Type="System.Collections.Generic.List&lt;System.String&gt;" Scope="User">
-      <Value Profile="(Default)">default
-default2</Value>
-    </Setting>
-    <Setting Name="savedString" Type="System.String" Scope="User">
       <Value Profile="(Default)" />
+    </Setting>
+    <Setting Name="Setting" Type="System.String" Scope="User">
+      <Value Profile="(Default)">default</Value>
     </Setting>
   </Settings>
 </SettingsFile>
