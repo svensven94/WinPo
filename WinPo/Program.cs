@@ -19,11 +19,11 @@ namespace WinPo
         {
             Application.EnableVisualStyles();
             Application.SetCompatibleTextRenderingDefault(false);
-            Application.Run(new Configuration());
+            Application.Run(new WinPoApplicationContext());
         }
     }
 
-    /*public class WinPoApplicationContext : ApplicationContext
+    public class WinPoApplicationContext : ApplicationContext
     {
         private NotifyIcon trayIcon;
 
@@ -33,19 +33,38 @@ namespace WinPo
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Configuration));
             trayIcon = new NotifyIcon()
             {
-                Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon"))),
+                Icon = Properties.Resources.TrayIcon,
                 ContextMenu = new ContextMenu(new MenuItem[] {
-                    new MenuItem("Set Windows"),
-                    new MenuItem("Configuration", Application.Run(new Configuration()),
+                    new MenuItem("Set Window Position", SetWindows),
+                    new MenuItem("-"),
+                    new MenuItem("Configuration", Show),
+                    new MenuItem("-"),
                     new MenuItem("Exit", Exit)
                 }),
                 Visible = true
             };
         }
 
-        void Run(object sender, EventArgs e)
+        void SetWindows(object sender, EventArgs e)
         {
+            if (Properties.Settings.Default == null)
+            {
+                MessageBox.Show("No saved configuration");
+                return;
+            }
+            Program.savedApps = new Dictionary<string, PosWindow.Rect>();
 
+            Configuration.importFromSettings();
+            Configuration.setPositions();
+        }
+
+        void Show(object sender, EventArgs e)
+        {
+            Configuration configuration = new Configuration
+            { 
+                ShowInTaskbar = true
+            };
+            configuration.Show();
         }
 
         void Exit(object sender, EventArgs e)
@@ -55,5 +74,5 @@ namespace WinPo
 
             Application.Exit();
         }
-    }*/
+    }
 }

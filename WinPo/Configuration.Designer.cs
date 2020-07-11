@@ -28,8 +28,6 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Configuration));
             this.splitBackground = new System.Windows.Forms.SplitContainer();
             this.tableUpper = new System.Windows.Forms.TableLayoutPanel();
             this.splitButtons = new System.Windows.Forms.SplitContainer();
@@ -40,10 +38,6 @@
             this.buttonSave = new System.Windows.Forms.Button();
             this.buttonSetAll = new System.Windows.Forms.Button();
             this.buttonLoad = new System.Windows.Forms.Button();
-            this.notifyIcon = new System.Windows.Forms.NotifyIcon(this.components);
-            this.contextMenu = new System.Windows.Forms.ContextMenuStrip(this.components);
-            this.settingsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
-            this.setWindowsToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize)(this.splitBackground)).BeginInit();
             this.splitBackground.Panel1.SuspendLayout();
             this.splitBackground.Panel2.SuspendLayout();
@@ -54,7 +48,6 @@
             this.splitButtons.SuspendLayout();
             this.tableLayoutPanel1.SuspendLayout();
             this.tableButtonsLower.SuspendLayout();
-            this.contextMenu.SuspendLayout();
             this.SuspendLayout();
             // 
             // splitBackground
@@ -193,37 +186,6 @@
             this.buttonLoad.UseVisualStyleBackColor = true;
             this.buttonLoad.Click += new System.EventHandler(this.buttonLoad_Click);
             // 
-            // notifyIcon
-            // 
-            this.notifyIcon.BalloonTipIcon = System.Windows.Forms.ToolTipIcon.Info;
-            this.notifyIcon.BalloonTipText = "I am here now";
-            this.notifyIcon.BalloonTipTitle = "WinPo";
-            this.notifyIcon.ContextMenuStrip = this.contextMenu;
-            this.notifyIcon.Icon = ((System.Drawing.Icon)(resources.GetObject("notifyIcon.Icon")));
-            this.notifyIcon.Text = "WinPo";
-            this.notifyIcon.Visible = true;
-            this.notifyIcon.MouseDoubleClick += new System.Windows.Forms.MouseEventHandler(this.notifyIcon_MouseDoubleClick);
-            // 
-            // contextMenu
-            // 
-            this.contextMenu.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {
-            this.settingsToolStripMenuItem,
-            this.setWindowsToolStripMenuItem});
-            this.contextMenu.Name = "contextMenu";
-            this.contextMenu.Size = new System.Drawing.Size(181, 70);
-            // 
-            // settingsToolStripMenuItem
-            // 
-            this.settingsToolStripMenuItem.Name = "settingsToolStripMenuItem";
-            this.settingsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.settingsToolStripMenuItem.Text = "Settings";
-            // 
-            // setWindowsToolStripMenuItem
-            // 
-            this.setWindowsToolStripMenuItem.Name = "setWindowsToolStripMenuItem";
-            this.setWindowsToolStripMenuItem.Size = new System.Drawing.Size(180, 22);
-            this.setWindowsToolStripMenuItem.Text = "Set Windows";
-            // 
             // Configuration
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -233,7 +195,6 @@
             this.Name = "Configuration";
             this.Text = "WinPo";
             this.Load += new System.EventHandler(this.Configuration_Load);
-            this.Resize += new System.EventHandler(this.Configuration_Resize);
             this.splitBackground.Panel1.ResumeLayout(false);
             this.splitBackground.Panel2.ResumeLayout(false);
             ((System.ComponentModel.ISupportInitialize)(this.splitBackground)).EndInit();
@@ -244,7 +205,6 @@
             this.splitButtons.ResumeLayout(false);
             this.tableLayoutPanel1.ResumeLayout(false);
             this.tableButtonsLower.ResumeLayout(false);
-            this.contextMenu.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -261,10 +221,6 @@
         private System.Windows.Forms.Button buttonSave;
         private System.Windows.Forms.Button buttonSetAll;
         private System.Windows.Forms.Button buttonLoad;
-        private System.Windows.Forms.NotifyIcon notifyIcon;
-        private System.Windows.Forms.ContextMenuStrip contextMenu;
-        private System.Windows.Forms.ToolStripMenuItem settingsToolStripMenuItem;
-        private System.Windows.Forms.ToolStripMenuItem setWindowsToolStripMenuItem;
     }
 }
 
