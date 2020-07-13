@@ -2,6 +2,7 @@ C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\WinPo.exe.config
 C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\WinPo.exe
 C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\WinPo.pdb
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.csprojAssemblyReference.cache
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.AppPanel.resources
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.Configuration.resources
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.Menu.resources
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.Properties.Resources.resources
@@ -9,3 +10,12 @@ C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.csproj.GenerateResource.c
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.csproj.CoreCompileInputs.cache
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.exe
 C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.pdb
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\WinPo.exe.manifest
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\WinPo.application
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.exe.manifest
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.application
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\Interop.Shell32.dll
+C:\Users\Sven\source\repos\WinPo\WinPo\obj\Debug\WinPo.csproj.ResolveComReference.cache
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\Interop.IWshRuntimeLibrary.dll
+C:\Users\Sven\source\repos\WinPo\WinPo\bin\Debug\Interop.Shell32.dll

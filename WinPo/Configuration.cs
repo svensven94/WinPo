@@ -1,10 +1,13 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Collections.ObjectModel;
+using System.Collections.Specialized;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Runtime.CompilerServices;
 using System.Runtime.InteropServices;
 using System.Text;
 using System.Threading.Tasks;
@@ -14,81 +17,244 @@ namespace WinPo
 {
     public partial class Configuration : Form
     {
-        private Dictionary<string, int[]> savedApps = new Dictionary<string, int[]>();
+        private int appCount = 0;
+        private List<int> tmpValues = new List<int>();
+        private string tmpName;
+        private PosWindow.Rect tmpPosition = new PosWindow.Rect();
 
         public Configuration()
         {
             InitializeComponent();
+            try
+            {
+                buildPanel();
+            }
+            catch
+            {
+                addPanel();
+            }
         }
 
         private void Configuration_Load(object sender, EventArgs e)
         {
-            getApps();
-            getScreens();
         }
 
-        private void getApps()
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            Process[] processes = Process.GetProcesses();
-            foreach (Process p in processes)
+            addPanel();
+        }
+
+        private void addPanel()
+        {
+            appCount += 1;
+            AppPanel newPanel = new AppPanel();
+            newPanel.Name = appCount.ToString();
+            //newPanel.Dock = DockStyle.Fill;
+            newPanel.Anchor = AnchorStyles.Top;
+            newPanel.Name = appCount.ToString();
+            tableUpper.Controls.Add(newPanel);
+        }
+
+        private void buttonRemove_Click(object sender, EventArgs e)
+        {
+            foreach (Control item in tableUpper.Controls.OfType<Control>())
             {
-                if (!String.IsNullOrEmpty(p.MainWindowTitle))
+                if (item.Name == appCount.ToString())
                 {
-                    comboApp.Items.Add(p.MainWindowTitle);
+                    tableUpper.Controls.Remove(item);
+                    appCount -= 1;
+                    break;
                 }
             }
         }
 
-        private void getScreens()
+        private void buttonSave_Click(object sender, EventArgs e)
         {
-            foreach (var screen in Screen.AllScreens)
+            Properties.Settings.Default.Reset();
+            Properties.Settings.Default.apps = new List<string>();
+
+            Program.savedApps = new Dictionary<string, PosWindow.Rect>();
+            //Program.savedContainers = new Dictionary<string, IContainerControl>();
+
+            //List<string> appList = new List<string>();
+            foreach (Control control in tableUpper.Controls.OfType<AppPanel>())
             {
-                string name = screen.DeviceName;
-                //comboScreen.Items.Add(name.Substring(name.LastIndexOf('\\')+1));
+                GetControl(control, getValues);
+                if (!String.IsNullOrEmpty(tmpName))
+                {
+                    PosWindow.Rect position = new PosWindow.Rect()
+                    {
+                        Left = tmpValues[1],
+                        Top = tmpValues[0]
+                    };
+                    Program.savedApps[tmpName] = position;
+                    Properties.Settings.Default.apps.Add(tmpName + ";" + position.Left + ";" + position.Top);
+                }
+
+                tmpName = null;
+                tmpValues = new List<int>();
             }
+
+            Properties.Settings.Default.Save(); 
         }
+
 
         private void buttonLoad_Click(object sender, EventArgs e)
         {
-            //IntPtr hWnd = PosWindow.FindWindow(comboApp.SelectedItem.ToString(),null);
-            if (comboApp.SelectedIndex > -1)
+            if (Properties.Settings.Default == null)
             {
-                IntPtr hWnd = PosWindow.FindWindow(null, comboApp.SelectedItem.ToString());
-                if (hWnd != IntPtr.Zero)
-                {
-                    //PosWindow.SetWindowPos(hWnd, IntPtr.Zero, 0, 0, 0, 0, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
-                    PosWindow.Rect position = new PosWindow.Rect();
-                    PosWindow.GetWindowRect(hWnd, ref position);
-                    textPosLeft.Text = position.Top.ToString();
-                    textPosTop.Text = position.Left.ToString();
-                    textPosRight.Text = position.Right.ToString();
-                    textPosBottom.Text = position.Bottom.ToString();
-                }
-            } else
+                MessageBox.Show("No saved configuration");
+                return;
+            }
+
+            try
             {
-                MessageBox.Show("Please select an application");
+                buildPanel();
+            }
+            catch (NullReferenceException ex)
+            {
+                MessageBox.Show("No saved settings!", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+
+        }
+
+        private void buildPanel()
+        {
+            Program.savedApps = new Dictionary<string, PosWindow.Rect>();
+            tableUpper.Controls.Clear();
+            appCount = 0;
+
+            importFromSettings();
+
+            foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
+            {
+                appCount += 1;
+                AppPanel newPanel = new AppPanel(app.Key, app.Value);
+                //newPanel.Dock = DockStyle.Top;
+                newPanel.Anchor = AnchorStyles.Top;
+                newPanel.Name = appCount.ToString();
+                tableUpper.Controls.Add(newPanel);
             }
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void buttonSetAll_Click(object sender, EventArgs e)
         {
-            if (comboApp.SelectedIndex > -1)
-            {
-                var position = new int[] { Int32.Parse(textPosLeft.Text), Int32.Parse(textPosTop.Text), Int32.Parse(textPosRight.Text), Int32.Parse(textPosBottom.Text) };
+            setPositions();
+        }
 
-                String app = comboApp.SelectedItem.ToString();
-                if (savedApps.ContainsKey(app))
+        public static void importFromSettings()
+        {
+            foreach (String savedData in Properties.Settings.Default.apps)
+            {
+                string appName = savedData.Split(';')[0];
+                PosWindow.Rect position = new PosWindow.Rect()
                 {
-                    savedApps[app] = position;
-                } else
-                {
-                    savedApps.Add(app, position);
-                }
-                
-                IntPtr hWnd = PosWindow.FindWindow(null, comboApp.SelectedItem.ToString());
+                    Left = Int32.Parse(savedData.Split(';')[1]),
+                    Top = Int32.Parse(savedData.Split(';')[2])
+                };
+                Program.savedApps.Add(appName, position);
+            }
+        }
+
+        public static void setPositions()
+        {
+            foreach (KeyValuePair<String, PosWindow.Rect> app in Program.savedApps)
+            {
+
+                IntPtr hWnd = PosWindow.FindWindow(null, app.Key);
                 if (hWnd != IntPtr.Zero)
                 {
-                    PosWindow.SetWindowPos(hWnd, IntPtr.Zero, position[0], position[1], position[2], position[3], PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                    PosWindow.SetWindowPos(hWnd, IntPtr.Zero, app.Value.Left, app.Value.Top, 0, 0, PosWindow.SWP_NOSIZE | PosWindow.SWP_NOZORDER);
+                }
+            }
+        }
+
+       private void Configuration_Resize(object sender, EventArgs e)
+        {
+            if (this.WindowState == FormWindowState.Minimized)
+            {
+                this.Close();
+            }
+        }
+
+        private void buttonImportAll_Click(object sender, EventArgs e)
+        {
+            foreach (Control panel in tableUpper.Controls.OfType<AppPanel>())
+            {
+
+                GetControl(panel, putValues);
+                tmpName = null;
+                tmpPosition = new PosWindow.Rect();
+            }
+        }
+
+        private void putValues(Control control)
+        {
+            if (control.GetType() == typeof(ComboBox))
+            {
+                ComboBox box = (ComboBox)control;
+                if (box.SelectedIndex > -1)
+                {
+                    tmpName = box.SelectedItem.ToString();
+                    IntPtr hWnd = PosWindow.FindWindow(null, tmpName);
+                    if (hWnd != IntPtr.Zero)
+                    {
+                        PosWindow.GetWindowRect(hWnd, ref tmpPosition);
+                    }
+                }
+            }
+            else if (control.GetType() == typeof(TextBox))
+            {
+                TextBox box = (TextBox)control;
+                switch (box.Name)
+                {
+                    case "textPosTop":
+                        box.Text = tmpPosition.Top.ToString();
+                        break;
+                    case "textPosLeft":
+                        box.Text = tmpPosition.Left.ToString();
+                        break;
+                }
+            }
+        }
+
+        private void getValues(Control control)
+        {
+            if (control.GetType() == typeof(ComboBox))
+            {
+                ComboBox box = (ComboBox)control;
+                if (box.SelectedIndex > -1)
+                {
+                    String app = box.SelectedItem.ToString();
+                    if (!Program.savedApps.ContainsKey(app))
+                    {
+                        Program.savedApps.Add(app, new PosWindow.Rect());
+                        tmpName = app;
+                    }
+                }
+            }
+            else if (control.GetType() == typeof(TextBox))
+            {
+                TextBox box = (TextBox)control;
+                if (!String.IsNullOrEmpty(box.Text))
+                {
+                    tmpValues.Add(Int32.Parse(box.Text.Trim()));
+                }
+            }
+        }
+
+        private void GetControl(Control parent, Action<Control> method)
+        {
+            foreach (Control control in parent.Controls)
+            {
+                if (control.GetType() == typeof(ComboBox) || control.GetType() == typeof(TextBox))
+                {
+                    method(control);
+                }
+                else
+                {
+                    GetControl(control, method);
                 }
             }
         }
