@@ -1,6 +1,9 @@
-﻿using System;
+﻿using IWshRuntimeLibrary;
+using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -38,6 +41,10 @@ namespace WinPo
                     new MenuItem("Set Window Position", SetWindows),
                     new MenuItem("-"),
                     new MenuItem("Configuration", Show),
+                    new MenuItem("Autostart", new MenuItem [] {
+                        new MenuItem("Enable", EnableAutostart),
+                        new MenuItem("Disable", DisableAutostart)
+                    }),
                     new MenuItem("-"),
                     new MenuItem("Exit", Exit)
                 }),
@@ -73,6 +80,58 @@ namespace WinPo
             trayIcon.Visible = false;
 
             Application.Exit();
+        }
+
+        void EnableAutostart(object sender, EventArgs e)
+        {
+            if (!System.IO.File.Exists(Environment.GetFolderPath(Environment.SpecialFolder.Startup) + "\\WinPo.lnk")){
+                WshShellClass wshShell = new WshShellClass();
+                IWshRuntimeLibrary.IWshShortcut shortcut;
+                string startUpFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+
+                // Create the shortcut
+                shortcut = (IWshRuntimeLibrary.IWshShortcut)wshShell.CreateShortcut(startUpFolderPath + "\\" + Application.ProductName + ".lnk");
+                shortcut.TargetPath = Application.ExecutablePath;
+                shortcut.WorkingDirectory = Application.StartupPath;
+                shortcut.Description = "Launch WinPo";
+                // shortcut.IconLocation = Application.StartupPath + @"\App.ico";
+                shortcut.Save();
+            }
+        }
+
+        void DisableAutostart(object sender, EventArgs e)
+        {
+            string startUpFolderPath = Environment.GetFolderPath(Environment.SpecialFolder.Startup);
+
+            DirectoryInfo di = new DirectoryInfo(startUpFolderPath);
+            FileInfo[] files = di.GetFiles("*.lnk");
+
+            foreach (FileInfo fi in files)
+            {
+                string shortcutTargetFile = GetShortcutTargetFile(fi.FullName);
+
+                if (shortcutTargetFile.EndsWith("WinPo.exe", StringComparison.InvariantCultureIgnoreCase))
+                {
+                    System.IO.File.Delete(fi.FullName);
+                }
+            }
+        }
+
+        public string GetShortcutTargetFile(string shortcutFilename)
+        {
+            string pathOnly = Path.GetDirectoryName(shortcutFilename);
+            string filenameOnly = Path.GetFileName(shortcutFilename);
+
+            Shell32.Shell shell = new Shell32.ShellClass();
+            Shell32.Folder folder = shell.NameSpace(pathOnly);
+            Shell32.FolderItem folderItem = folder.ParseName(filenameOnly);
+            if (folderItem != null)
+            {
+                Shell32.ShellLinkObject link = (Shell32.ShellLinkObject)folderItem.GetLink;
+                return link.Path;
+            }
+
+            return String.Empty; // Not found
         }
     }
 }
